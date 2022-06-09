@@ -1,0 +1,118 @@
+### 使用用户名+密码登录，获取JWT
+POST http://localhost:3001/user/login
+#POST https://notepad.icebluesakura.xyz/api/v1/user/login
+Content-Type: application/json
+
+{
+  "username": "username",
+  "password": "123456"
+}
+
+<> 2022-04-10T004609.201.json
+<> 2022-04-09T235253.201.json
+
+### 更新JWT密钥,续时24h
+POST http://localhost:3000/user/jwt-refresh
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VybmFtZSIsImlhdCI6MTY0OTUwNTczNiwiZXhwIjoxNjQ5NTkyMTM2fQ.zdXmYMuY6lBwqCrxyrWDimOOBq8YXAdZxBoFQO4xpU8
+
+<> 2022-04-10T004613.201.json
+<> 2022-04-09T235423.201.json
+<> 2022-04-09T235257.404.json
+
+
+### 查询当前登录用户信息
+GET http://localhost:3000/user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VybmFtZSIsImlhdCI6MTY0OTUwNTczNiwiZXhwIjoxNjQ5NTkyMTM2fQ.zdXmYMuY6lBwqCrxyrWDimOOBq8YXAdZxBoFQO4xpU8
+
+<> 2022-04-10T004622.200.json
+<> 2022-04-09T235432.200.json
+
+
+
+### 根据用户名更新用户信息
+POST http://localhost:3000/user/update
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VybmFtZSIsImlhdCI6MTY0OTUwNTczNiwiZXhwIjoxNjQ5NTkyMTM2fQ.zdXmYMuY6lBwqCrxyrWDimOOBq8YXAdZxBoFQO4xpU8
+
+{
+  "username": "username",
+  "password": "123456",
+  "nickname": "nickname"
+}
+
+<> 2022-04-10T004625.201.html
+<> 2022-04-10T003932.201.html
+<> 2022-04-10T002111.201.html
+<> 2022-04-10T000246.201.html
+<> 2022-04-09T235605.201.html
+<> 2022-04-09T235511.201.json
+<> 2022-04-09T235505.400.json
+<> 2022-04-09T235435.201.json
+
+### 注册用户
+POST http://localhost:3001/user/register
+#POST https://notepad.icebluesakura.xyz/api/v1/user/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VybmFtZSIsImlhdCI6MTY0OTUwNTczNiwiZXhwIjoxNjQ5NTkyMTM2fQ.zdXmYMuY6lBwqCrxyrWDimOOBq8YXAdZxBoFQO4xpU8
+
+{
+  "username": "username11",
+  "password": "123456",
+  "nickname": "nickname",
+  "avatar": "8"
+}
+
+<> 2022-04-10T003823.201.json
+
+
+
+### 查询当前登录用户的特定文章
+GET http://localhost:3001/note/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VybmFtZSIsImlhdCI6MTY1MjEwNjM3NCwiZXhwIjoxNjUyMTkyNzc0fQ.jX_7W6ox3zZSAROOG_XRXcpUCABLkpZ9Z9QktO8aYqY
+
+<> 2022-04-10T004630.200.json
+<> 2022-04-09T235620.200.json
+
+
+### 创建文章
+POST http://localhost:3001/note/create
+#POST https://notepad.icebluesakura.xyz/api/v1/note/create
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VybmFtZSIsImlhdCI6MTY1MjEwNjM3NCwiZXhwIjoxNjUyMTkyNzc0fQ.jX_7W6ox3zZSAROOG_XRXcpUCABLkpZ9Z9QktO8aYqY
+
+{
+  "title": "记事项",
+  "content": "<p>Hello</p>",
+  "content_type": "html",
+  "author_id": 1
+}
+
+### 上传文件
+POST http://localhost:3001/file/upload-signup
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VybmFtZSIsImlhdCI6MTY1MjAyMjQyMCwiZXhwIjoxNjUyMTA4ODIwfQ.Yf8Ok9p02zZ7qMl9DrZKkcV9bwVCrMW0rHfYtdtqAnk
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="test_img.jpg"
+
+< ./test_img.jpg
+--WebAppBoundary--
+
+
+### 获得最后Note更新时间
+GET http://localhost:3001/note/lastModified
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VybmFtZSIsImlhdCI6MTY1MjEwNjM3NCwiZXhwIjoxNjUyMTkyNzc0fQ.jX_7W6ox3zZSAROOG_XRXcpUCABLkpZ9Z9QktO8aYqY
+
+
+### 删除Note
+POST http://localhost:3001/note/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsImlhdCI6MTY1MjQ1OTUyMSwiZXhwIjoxNjUyNTQ1OTIxfQ.8jQYZeT0ZvTvLK7XqQa-k24Tn9ZThQP4vAgS59STTtQ
+
+{
+  "id": 5
+}
